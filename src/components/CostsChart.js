@@ -9,9 +9,9 @@ const CostsChart = () => {
         labels: ['Venue', 'Equipment', 'Promotion', 'Refreshments', 'Miscellaneous'],
         datasets: [
             {
-                label: 'Costs',
+                label: 'Cost ($)',
                 data: [500, 800, 300, 400, 200],
-                backgroundColor: ['#0070f3', '#22c55e', '#ff7a00', '#ef4444', '#9333ea'],
+                backgroundColor: ['#2563eb'],
             },
         ],
     };
