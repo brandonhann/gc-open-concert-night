@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image';
+import React from 'react';
+import Carousel from '../components/Carousel';
 import PieChart from '../components/PieChart';
 import dynamic from 'next/dynamic';
 const CostsChart = dynamic(() => import('../components/CostsChart'), { ssr: false });
@@ -49,7 +51,6 @@ export default function Home() {
             alt="Georgian College Logo"
             width={128}
             height={128}
-            layout="fixed"
             className="mb-4"
           />
           <h2 className="text-2xl font-bold mb-4">Why did we choose this event?</h2>
@@ -72,36 +73,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="bg-opacity-50 bg-blue-50 text-blue-900 p-8 rounded-lg mb-8">
-          <h2 className="text-2xl font-bold mb-4">Performances and Highlights</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="relative">
-              <img className="rounded-lg shadow-md" src="https://via.placeholder.com/350x200" alt="Performance 1" />
-              <p className="rounded-lg absolute bottom-0 w-full text-center font-bold text-blue-50 bg-blue-900 bg-opacity-60 p-2">Performance 1</p>
-            </div>
-            <div className="relative">
-              <img className="rounded-lg shadow-md" src="https://via.placeholder.com/350x200" alt="Performance 2" />
-              <p className="rounded-lg absolute bottom-0 w-full text-center font-bold text-blue-50 bg-blue-900 bg-opacity-60 p-2">Performance 2</p>
-            </div>
-            <div className="relative">
-              <img className="rounded-lg shadow-md" src="https://via.placeholder.com/350x200" alt="Performance 3" />
-              <p className="rounded-lg absolute bottom-0 w-full text-center font-bold text-blue-50 bg-blue-900 bg-opacity-60 p-2">Performance 3</p>
-            </div>
-            <div className="relative">
-              <img className="rounded-lg shadow-md" src="https://via.placeholder.com/350x200" alt="Performance 4" />
-              <p className="rounded-lg absolute bottom-0 w-full text-center font-bold text-blue-50 bg-blue-900 bg-opacity-60 p-2">Performance 4</p>
-            </div>
-            <div className="relative">
-              <img className="rounded-lg shadow-md" src="https://via.placeholder.com/350x200" alt="Performance 5" />
-              <p className="rounded-lg absolute bottom-0 w-full text-center font-bold text-blue-50 bg-blue-900 bg-opacity-60 p-2">Performance 5</p>
-            </div>
-            <div className="relative">
-              <img className="rounded-lg shadow-md" src="https://via.placeholder.com/350x200" alt="Performance 6" />
-
-              <p className="rounded-lg absolute bottom-0 w-full text-center font-bold text-blue-50 bg-blue-900 bg-opacity-60 p-2">Performance 6</p>
-            </div>
-          </div>
-        </section>
+        <Carousel />
         <section className="bg-opacity-50 bg-blue-50 text-blue-900 p-8 rounded-lg mb-8">
           <h2 className="text-2xl font-bold mb-4">Register for the Open Mic Night</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
