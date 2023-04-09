@@ -7,7 +7,7 @@ const CostsChart = dynamic(() => import('../components/CostsChart'), { ssr: fals
 const mentalHealthData = [
   { label: 'Moderate-to-serious level', value: 39 },
   { label: 'Serious level', value: 17 },
-  { label: 'Not distressed', value: 44 }, // 100 - 39 - 17
+  { label: 'Not distressed', value: 44 },
 ];
 
 const CustomTooltip = ({ active, payload, label }) => {
@@ -184,7 +184,7 @@ export default function Home() {
           <div>
             <h2 className="text-2xl font-bold mb-4">Practical Resources and Costs/Expenses for the Concert</h2>
             <p>To ensure a successful event, we have carefully considered the following resources and costs:</p>
-            <div className="mt-4">
+            <div className="mt-4 w-full max-w-md sm:px-2">
               <CostsChart />
             </div>
           </div>
