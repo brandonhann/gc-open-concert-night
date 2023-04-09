@@ -31,7 +31,7 @@ export default function Home() {
       <main className="flex flex-col min-h-screen p-4 sm:p-8 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
         <header className="text-center relative">
           <div className="banner-image w-full h-64 md:h-96 rounded-t-md"></div>
-          <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center p-2 sm:p-4 md:p-8 backdrop-blur-md">
+          <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center p-2 sm:p-4 md:p-8 backdrop-blur-md rounded-t-md">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4 text-blue-50 bg-blue-900 bg-opacity-50 shadow-lg p-1 sm:p-2 rounded-lg">
               Global Rhythms: A Georgian College Open Concert Night
             </h1>

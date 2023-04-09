@@ -37,4 +37,5 @@ body {
   background-image: url('../../public/concert.png');
   background-size: cover;
   background-repeat: no-repeat;
+  border-radius: 8px;
 }
