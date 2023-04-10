@@ -52,12 +52,12 @@ export default function Home() {
         <title>Global Rhythms: A Georgian College Open Concert Night</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <main className="flex flex-col min-h-screen p-4 sm:p-8 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
+      <main className="flex flex-col min-h-screen md:p-8 sm:p-4 p-2 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
         <header className="text-center relative">
-          <div className="banner-image w-full h-64 md:h-96 rounded-t-md"></div>
+          <div className="banner-image w-full h-56 md:h-64 rounded-t-md"></div>
           <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center sm:p-4 md:p-8 backdrop-blur-md rounded-t-md">
             <h1 className='text-shadow text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4 text-green-300 bg-green-900 bg-opacity-50 p-1 rounded-lg'>Global Rhythms</h1>
-            <h2 className="text-shadow text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4 text-blue-50 sm:p-2g">
+            <h2 className="text-shadow text-lg sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-4 text-blue-50 sm:p-2g">
               A Georgian College Open Concert Night
             </h2>
             <p className="text-shadow text-sm sm:text-lg md:text-xl mb-2 sm:mb-6 text-blue-50 p-1 sm:p-2">
@@ -68,7 +68,7 @@ export default function Home() {
 
 
 
-        <section className="bg-opacity-50 bg-blue-50 text-blue-900 p-8 rounded-b mb-8">
+        <section className="bg-opacity-50 bg-blue-50 text-blue-900 md:p-8 p-4 rounded-b mb-8">
           <Image
             src="/gc-logo.png"
             alt="Georgian College Logo"
@@ -106,7 +106,7 @@ export default function Home() {
           </div>
         </section>
         <Carousel />
-        <section className="fade bg-opacity-50 bg-blue-50 text-blue-900 p-8 rounded-lg mb-8">
+        <section className="fade bg-opacity-50 bg-blue-50 text-blue-900 md:p-8 p-4 rounded-lg mb-8">
           <h3 className="text-2xl font-bold mb-4">Register for the Open Mic Night</h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div>
@@ -152,7 +152,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="fade bg-opacity-50 bg-blue-50 text-blue-900 p-8 rounded-lg mb-8">
+        <section className="fade bg-opacity-50 bg-blue-50 text-blue-900 md:p-8 p-4 rounded-lg mb-8">
           <h3 className="text-2xl font-bold mb-4">Mental Health in Ontario Colleges</h3>
           <div className="
       flex flex-wrap">
@@ -163,7 +163,7 @@ export default function Home() {
               </p>
               <p className="italic mt-4">
                 Centre for Addiction and Mental Health. (n.d.). Mental illness and addiction: Facts and statistics. Retrieved from{" "}
-                <a className='text-blue-600' href="https://www.camh.ca/en/driving-change/the-crisis-is-real/mental-health-statistics" target="_blank" rel="noopener noreferrer">
+                <a className='text-blue-600 hover:underline' href="https://www.camh.ca/en/driving-change/the-crisis-is-real/mental-health-statistics" target="_blank" rel="noopener noreferrer">
                   https://www.camh.ca/en/driving-change/the-crisis-is-real/mental-health-statistics
                 </a>
               </p>
@@ -173,7 +173,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="fade bg-opacity-50 bg-blue-50 text-blue-900 p-8 rounded-lg mb-8 grid grid-cols-1 xl:grid-cols-2 gap-8">
+        <section className="fade bg-opacity-50 bg-blue-50 text-blue-900 md:p-8 p-4 rounded-lg mb-8 grid grid-cols-1 xl:grid-cols-2 gap-8">
           <div>
             <h3 className="text-2xl font-bold mb-4">Community Outreach/Event Advertising Methods</h3>
             <p>To ensure the success of our event, we will use the following advertising methods to reach a wider audience:</p>
@@ -196,7 +196,7 @@ export default function Home() {
                   Download
                 </a>
               </div>
-              <div className="mt-4">
+              <div>
                 <QRCode value="https://gc-concert.vercel.app/" size={128} />
               </div>
             </div>

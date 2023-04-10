@@ -13,7 +13,7 @@ const PieChart = ({ data }) => {
                     datasets: [
                         {
                             data: data.map((item) => item.value),
-                            backgroundColor: ['#4B56A7', '#F54748', '#3DA35D'],
+                            backgroundColor: ['#eab308', '#ef4444', '#22c55e'],
                         },
                     ],
                 },
