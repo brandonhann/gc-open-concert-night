@@ -11,7 +11,7 @@ const ResponsiveCarousel = () => {
     ];
 
     return (
-        <section className="text-blue-900 rounded-lg mb-8">
+        <section className="fade text-blue-900 rounded-lg mb-8">
             <div className="w-full">
                 <Carousel
                     showArrows

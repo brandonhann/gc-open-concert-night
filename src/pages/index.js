@@ -1,6 +1,7 @@
 import Head from 'next/head'
-import Image from 'next/image';
-import React from 'react';
+import Image from 'next/image'
+import React, { useState, useEffect } from 'react';
+import QRCode from 'qrcode.react';
 import Carousel from '../components/Carousel';
 import PieChart from '../components/PieChart';
 import dynamic from 'next/dynamic';
@@ -12,18 +13,39 @@ const mentalHealthData = [
   { label: 'Not distressed', value: 44 },
 ];
 
-const CustomTooltip = ({ active, payload, label }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="bg-white text-black p-2 border border-gray-300 rounded">
-        <p className="text-sm">{`${label}: $${payload[0].value}`}</p>
-      </div>
-    );
-  }
-  return null;
-};
+
+
 
 export default function Home() {
+  const [timeRemaining, setTimeRemaining] = useState();
+
+  function calculateTimeRemaining() {
+    const eventDate = new Date(2023, 3, 30, 19, 0, 0);
+    const currentDate = new Date();
+    const timeDiff = eventDate - currentDate;
+
+    setTimeRemaining(timeDiff);
+  }
+
+  useEffect(() => {
+    calculateTimeRemaining();
+    const interval = setInterval(calculateTimeRemaining, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  function formatTimeRemaining(time) {
+    const days = Math.floor(time / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((time % (1000 * 60)) / 1000);
+
+    return `${days} days ${hours} hrs ${minutes} min ${seconds} sec`;
+  }
+
+
   return (
     <>
       <Head>
@@ -33,11 +55,12 @@ export default function Home() {
       <main className="flex flex-col min-h-screen p-4 sm:p-8 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
         <header className="text-center relative">
           <div className="banner-image w-full h-64 md:h-96 rounded-t-md"></div>
-          <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center p-2 sm:p-4 md:p-8 backdrop-blur-md rounded-t-md">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4 text-blue-50 bg-blue-900 bg-opacity-50 shadow-lg p-1 sm:p-2 rounded-lg">
-              Global Rhythms: A Georgian College Open Concert Night
-            </h1>
-            <p className="text-sm sm:text-lg md:text-xl mb-2 sm:mb-6 text-blue-50 bg-blue-900 bg-opacity-50 shadow-lg p-1 sm:p-2 rounded-lg">
+          <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center sm:p-4 md:p-8 backdrop-blur-md rounded-t-md">
+            <h1 className='text-shadow text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4 text-green-300 bg-green-900 bg-opacity-50 p-1 rounded-lg'>Global Rhythms</h1>
+            <h2 className="text-shadow text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4 text-blue-50 sm:p-2g">
+              A Georgian College Open Concert Night
+            </h2>
+            <p className="text-shadow text-sm sm:text-lg md:text-xl mb-2 sm:mb-6 text-blue-50 p-1 sm:p-2">
               Join us on May 20th, 2023 for an unforgettable night of performances and connections.
             </p>
           </div>
@@ -53,7 +76,7 @@ export default function Home() {
             height={128}
             className="mb-4"
           />
-          <h2 className="text-2xl font-bold mb-4">Why did we choose this event?</h2>
+          <h3 className="text-2xl font-bold mb-4">Why did we choose this event?</h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div>
               <p className="mb-4">We organized the Global Rhythms open mic night to provide a platform for Georgian College students to showcase their talents, creativity, and cultural diversity. This event aims to:</p>
@@ -64,18 +87,27 @@ export default function Home() {
               </ul>
               <p>Join us for an evening filled with amazing performances, good vibes, and a celebration of our vibrant community!</p>
             </div>
-            <div>
+            <div className="flex flex-col space-y-2">
               <h3 className="text-xl font-bold mb-2">Event Details</h3>
               <p className="mb-2"><strong>Date:</strong> April 30, 2023</p>
               <p className="mb-2"><strong>Time:</strong> 7:00 PM - 10:00 PM</p>
+              {timeRemaining && (
+                <p className="mb-2">
+                  <span className="text-sm inline-block p-2 text-center bg-blue-900 text-blue-50 rounded-md border-2 border-blue-600 shadow-md">
+                    {formatTimeRemaining(timeRemaining)}
+                  </span>
+                </p>
+              )}
               <p className="mb-2"><strong>Location:</strong> Georgian College, Barrie Campus, Building C, Room C101</p>
               <p className="mb-2"><strong>Admission:</strong> Free for all Georgian College students</p>
             </div>
+
+
           </div>
         </section>
         <Carousel />
-        <section className="bg-opacity-50 bg-blue-50 text-blue-900 p-8 rounded-lg mb-8">
-          <h2 className="text-2xl font-bold mb-4">Register for the Open Mic Night</h2>
+        <section className="fade bg-opacity-50 bg-blue-50 text-blue-900 p-8 rounded-lg mb-8">
+          <h3 className="text-2xl font-bold mb-4">Register for the Open Mic Night</h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div>
               <p className="mb-4">Interested in performing at our open mic night? Register now by filling out the form on the right. Please keep in mind the following guidelines:</p>
@@ -120,8 +152,8 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="bg-opacity-50 bg-blue-50 text-blue-900 p-8 rounded-lg mb-8">
-          <h2 className="text-2xl font-bold mb-4">Mental Health in Ontario Colleges</h2>
+        <section className="fade bg-opacity-50 bg-blue-50 text-blue-900 p-8 rounded-lg mb-8">
+          <h3 className="text-2xl font-bold mb-4">Mental Health in Ontario Colleges</h3>
           <div className="
       flex flex-wrap">
             <div className="w-full md:w-1/2 md:pr-4">
@@ -141,9 +173,9 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="bg-opacity-50 bg-blue-50 text-blue-900 p-8 rounded-lg mb-8 grid grid-cols-1 xl:grid-cols-2 gap-8">
+        <section className="fade bg-opacity-50 bg-blue-50 text-blue-900 p-8 rounded-lg mb-8 grid grid-cols-1 xl:grid-cols-2 gap-8">
           <div>
-            <h2 className="text-2xl font-bold mb-4">Community Outreach/Event Advertising Methods</h2>
+            <h3 className="text-2xl font-bold mb-4">Community Outreach/Event Advertising Methods</h3>
             <p>To ensure the success of our event, we will use the following advertising methods to reach a wider audience:</p>
             <ul className="list-disc list-inside mb-4">
               <li>Posters and flyers distributed across the Georgian College campus and local community centers.</li>
@@ -153,9 +185,24 @@ export default function Home() {
               <li>Word of mouth promotion through student clubs and associations.</li>
             </ul>
             <p>By utilizing a variety of channels, we aim to create excitement around the event and encourage participation from students and the local community.</p>
+            <div className="mt-4 flex flex-row items-center justify-center space-x-12">
+              <div className="flex flex-col space-y-2">
+                <h3 className="text-2xl font-bold mb-4 text-center">Download Flyer</h3>
+                <a
+                  href="path/to/your/flyer.pdf"
+                  download
+                  className="m-auto text-sm bg-blue-900 text-blue-50 font-bold py-2 px-4 rounded hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+                >
+                  Download
+                </a>
+              </div>
+              <div className="mt-4">
+                <QRCode value="https://gc-concert.vercel.app/" size={128} />
+              </div>
+            </div>
           </div>
           <div>
-            <h2 className="text-2xl font-bold mb-4">Practical Resources and Costs/Expenses for the Concert</h2>
+            <h3 className="text-2xl font-bold mb-4">Practical Resources and Costs/Expenses for the Concert</h3>
             <p>To ensure a successful event, we have carefully considered the following resources and costs:</p>
             <div className="mt-4 w-full max-w-md sm:px-2">
               <CostsChart />
