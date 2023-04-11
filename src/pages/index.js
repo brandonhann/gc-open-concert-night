@@ -5,7 +5,7 @@ import QRCode from 'qrcode.react';
 import Carousel from '../components/Carousel';
 import PieChart from '../components/PieChart';
 import dynamic from 'next/dynamic';
-const CostsChart = dynamic(() => import('../components/CostsChart'), { ssr: false });
+const BarChart = dynamic(() => import('../components/BarChart'), { ssr: false });
 
 const mentalHealthData = [
   { label: 'Moderate-to-serious level', value: 39 },
@@ -20,7 +20,7 @@ export default function Home() {
   const [timeRemaining, setTimeRemaining] = useState();
 
   function calculateTimeRemaining() {
-    const eventDate = new Date(2023, 3, 30, 19, 0, 0);
+    const eventDate = new Date(2023, 4, 20, 21, 0, 0);
     const currentDate = new Date();
     const timeDiff = eventDate - currentDate;
 
@@ -89,7 +89,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col space-y-2">
               <h3 className="text-xl font-bold mb-2">Event Details</h3>
-              <p className="mb-2"><strong>Date:</strong> April 30, 2023</p>
+              <p className="mb-2"><strong>Date:</strong> May 20, 2023</p>
               <p className="mb-2"><strong>Time:</strong> 7:00 PM - 10:00 PM</p>
               {timeRemaining && (
                 <p className="mb-2">
@@ -205,7 +205,7 @@ export default function Home() {
             <h3 className="text-2xl font-bold mb-4">Practical Resources and Costs/Expenses for the Concert</h3>
             <p>To ensure a successful event, we have carefully considered the following resources and costs:</p>
             <div className="mt-4 w-full max-w-md sm:px-2">
-              <CostsChart />
+              <BarChart />
             </div>
           </div>
         </section>

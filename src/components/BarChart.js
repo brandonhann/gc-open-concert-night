@@ -2,15 +2,15 @@ import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { useMediaQuery } from 'react-responsive';
 
-const CostsChart = () => {
+const BarChart = () => {
     const isSmallScreen = useMediaQuery({ maxWidth: 767 });
 
     const chartData = {
-        labels: ['Venue', 'Equipment', 'Promotion', 'Refreshments', 'Miscellaneous'],
+        labels: ['Equipment', 'Promotion', 'Refreshments', 'Miscellaneous'],
         datasets: [
             {
                 label: 'Cost ($)',
-                data: [500, 800, 300, 400, 200],
+                data: [800, 300, 400, 200],
                 backgroundColor: ['#2563eb'],
             },
         ],
@@ -33,4 +33,4 @@ const CostsChart = () => {
     );
 };
 
-export default CostsChart;
+export default BarChart;
