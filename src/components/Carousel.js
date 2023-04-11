@@ -25,7 +25,7 @@ const ResponsiveCarousel = () => {
                                 type="button"
                                 onClick={onClickHandler}
                                 title={label}
-                                className="absolute left-0 z-10 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-25 hover:bg-opacity-50 rounded-full p-2 focus:outline-none"
+                                className="absolute left-0 z-10 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-50 rounded-full p-2 focus:outline-none"
                                 style={{ border: "none" }}
                             >
                                 <span className="sr-only">Previous</span>
@@ -41,7 +41,7 @@ const ResponsiveCarousel = () => {
                                 type="button"
                                 onClick={onClickHandler}
                                 title={label}
-                                className="absolute right-0 z-10 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-25 hover:bg-opacity-50 rounded-full p-2 focus:outline-none"
+                                className="absolute right-0 z-10 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-50 rounded-full p-2 focus:outline-none"
                                 style={{ border: "none" }}
                             >
                                 <span className="sr-only">Next</span>
