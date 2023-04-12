@@ -118,7 +118,7 @@ export default function Home() {
               <p className="mb-2"><strong>Time:</strong> 7:00 PM - 10:00 PM</p>
               {timeRemaining && (
                 <p className="mb-2">
-                  <span className="text-sm inline-block p-2 text-center bg-blue-900 text-blue-50 rounded-md border-2 border-blue-600 shadow-md">
+                  <span className="text-sm inline-block bg-blue-900 text-blue-50 font-bold py-2 px-4 rounded">
                     {formatTimeRemaining(timeRemaining)}
                   </span>
                 </p>
@@ -169,7 +169,7 @@ export default function Home() {
                   </select>
                 </div>
                 <div className="flex items-center justify-between">
-                  <button className="bg-blue-900 hover:bg-blue-700 text-blue-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                  <button className="m-auto text-sm bg-blue-900 text-blue-50 font-bold py-2 px-4 rounded hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50" type="button">
                     Register
                   </button>
                 </div>
