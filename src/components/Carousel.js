@@ -5,9 +5,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const ResponsiveCarousel = () => {
     const images = [
-        { src: "/slide1.png", alt: "Performance 1" },
-        { src: "/slide2.png", alt: "Performance 2" },
-        { src: "/slide3.png", alt: "Performance 3" },
+        { src: "/slide1.jpg", alt: "Performance 1" },
+        { src: "/slide2.jpg", alt: "Performance 2" },
+        { src: "/slide3.jpg", alt: "Performance 3" },
     ];
 
     return (

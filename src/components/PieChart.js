@@ -1,9 +1,14 @@
 import React, { useRef, useEffect } from 'react';
 import Chart from 'chart.js/auto';
 
-const PieChart = ({ data }) => {
-    const chartRef = useRef(null);
+const data = [
+    { label: 'Moderate-to-serious level', value: 39 },
+    { label: 'Serious level', value: 17 },
+    { label: 'Not distressed', value: 44 },
+];
 
+const PieChart = () => {
+    const chartRef = useRef(null);
     useEffect(() => {
         if (chartRef && chartRef.current) {
             const chartInstance = new Chart(chartRef.current, {

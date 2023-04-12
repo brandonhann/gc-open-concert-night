@@ -1,22 +1,44 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
 import QRCode from 'qrcode.react';
 import Carousel from '../components/Carousel';
 import PieChart from '../components/PieChart';
 import dynamic from 'next/dynamic';
+import Flyer from '../components/Flyer';
 const BarChart = dynamic(() => import('../components/BarChart'), { ssr: false });
 
-const mentalHealthData = [
-  { label: 'Moderate-to-serious level', value: 39 },
-  { label: 'Serious level', value: 17 },
-  { label: 'Not distressed', value: 44 },
-];
 
+async function downloadFlyer(setDownloading) {
+  setDownloading(true);
 
+  const flyerElement = document.createElement("div");
+  flyerElement.style.position = "absolute";
+  flyerElement.style.left = "-9999px";
+  document.body.appendChild(flyerElement);
 
+  ReactDOM.render(<Flyer />, flyerElement);
+
+  setTimeout(async () => {
+    const canvas = await html2canvas(flyerElement);
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF("p", "mm", "a4");
+    const imgProps = pdf.getImageProperties(imgData);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save("Global-Rhythms-Flyer.pdf");
+
+    document.body.removeChild(flyerElement);
+    setDownloading(false);
+  }, 1000);
+}
 
 export default function Home() {
+  const [downloading, setDownloading] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState();
 
   function calculateTimeRemaining() {
@@ -53,6 +75,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <main className="flex flex-col min-h-screen md:p-8 sm:p-4 p-2 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
+        <div id="hiddenFlyer" style={{ display: "none" }}>
+          <Flyer />
+        </div>
         <header className="text-center relative">
           <div className="banner-image w-full h-56 md:h-64 rounded-t-md"></div>
           <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center sm:p-4 md:p-8 backdrop-blur-md rounded-t-md">
@@ -169,11 +194,11 @@ export default function Home() {
               </p>
             </div>
             <div className="mt-4 md:mt-0 m-auto">
-              <PieChart data={mentalHealthData} />
+              <PieChart />
             </div>
           </div>
         </section>
-        <section className="fade bg-opacity-50 bg-blue-50 text-blue-900 md:p-8 p-4 rounded-lg mb-8 grid grid-cols-1 xl:grid-cols-2 gap-8">
+        <section className="fade bg-opacity-50 bg-blue-50 text-blue-900 md:p-8 p-4 rounded-lg mb-4 grid grid-cols-1 xl:grid-cols-2 gap-8">
           <div>
             <h3 className="text-2xl font-bold mb-4">Community Outreach/Event Advertising Methods</h3>
             <p>To ensure the success of our event, we will use the following advertising methods to reach a wider audience:</p>
@@ -185,21 +210,23 @@ export default function Home() {
               <li>Word of mouth promotion through student clubs and associations.</li>
             </ul>
             <p>By utilizing a variety of channels, we aim to create excitement around the event and encourage participation from students and the local community.</p>
-            <div className="mt-4 flex flex-row items-center justify-center space-x-12">
+            <div className="mt-4 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-12">
               <div className="flex flex-col space-y-2">
-                <h3 className="text-2xl font-bold mb-4 text-center">Download Flyer</h3>
-                <a
-                  href="path/to/your/flyer.pdf"
-                  download
+                <h3 className="text-2xl font-bold text-center">Download Flyer</h3>
+                <button
+                  onClick={() => downloadFlyer(setDownloading)}
                   className="m-auto text-sm bg-blue-900 text-blue-50 font-bold py-2 px-4 rounded hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
                 >
-                  Download
-                </a>
+                  {downloading ? "Loading..." : "Download"}
+                </button>
+
+
               </div>
               <div>
                 <QRCode value="https://gc-concert.vercel.app/" size={128} />
               </div>
             </div>
+
           </div>
           <div>
             <h3 className="text-2xl font-bold mb-4">Practical Resources and Costs/Expenses for the Concert</h3>
@@ -207,11 +234,13 @@ export default function Home() {
             <div className="mt-4 w-full max-w-md sm:px-2">
               <BarChart />
             </div>
+            <p className='mt-2'>The human resource cost is $0 as it will consist of student volunteers.</p>
           </div>
         </section>
         <footer className="text-center text-blue-50">
-          <p className="mb-4">&copy; {new Date().getFullYear()} Georgian College</p>
-          <p>For any inquiries, please contact our team at georgianevents@example.com</p>
+          <p className="mb-2">&copy; {new Date().getFullYear()} Georgian College</p>
+          <p className='mb-2'>For any inquiries, please contact our team at georgianevents@example.com</p>
+          <p>COMM_1016 - Brandon, Fregine, Marjorie & Yashtika</p>
         </footer>
       </main>
     </>
