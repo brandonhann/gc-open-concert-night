@@ -104,7 +104,7 @@ export default function Home() {
           <h3 className="text-2xl font-bold mb-4">Why did we choose this event?</h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div>
-              <p className="mb-4">We organized the Global Rhythms open mic night to provide a platform for Georgian College students to showcase their talents, creativity, and cultural diversity. This event aims to:</p>
+              <p className="mb-4">We organized the Global Rhythms open concert night to provide a platform for Georgian College students to showcase their talents, creativity, and cultural diversity. This event aims to:</p>
               <ul className="list-disc list-inside mb-4">
                 <li>Help students relax and destress through music and performances.</li>
                 <li>Encourage students to express themselves and share their experiences.</li>
@@ -132,10 +132,10 @@ export default function Home() {
         </section>
         <Carousel />
         <section className="fade bg-opacity-50 bg-blue-50 text-blue-900 md:p-8 p-4 rounded-lg mb-8">
-          <h3 className="text-2xl font-bold mb-4">Register for the Open Mic Night</h3>
+          <h3 className="text-2xl font-bold mb-4">Register for the Open Concert Night</h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div>
-              <p className="mb-4">Interested in performing at our open mic night? Register now by filling out the form on the right. Please keep in mind the following guidelines:</p>
+              <p className="mb-4">Interested in performing at our open concert night? Register now by filling out the form on the right. Please keep in mind the following guidelines:</p>
               <ul className="list-disc list-inside mb-4">
                 <li>Each performance should not exceed 5 minutes.</li>
                 <li>Performances must be respectful and suitable for all audiences.</li>
@@ -198,7 +198,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="fade bg-opacity-50 bg-blue-50 text-blue-900 md:p-8 p-4 rounded-lg mb-4 grid grid-cols-1 xl:grid-cols-2 gap-8">
+        <section className="fade bg-opacity-50 bg-blue-50 text-blue-900 md:p-8 p-4 rounded-lg mb-8 grid grid-cols-1 xl:grid-cols-2 gap-8">
           <div>
             <h3 className="text-2xl font-bold mb-4">Community Outreach/Event Advertising Methods</h3>
             <p>To ensure the success of our event, we will use the following advertising methods to reach a wider audience:</p>
@@ -237,7 +237,7 @@ export default function Home() {
             <p className='mt-2'>The human resource cost is $0 as it will consist of student volunteers.</p>
           </div>
         </section>
-        <footer className="text-center text-blue-50">
+        <footer className="bg-opacity-50 bg-blue-50 text-blue-900 text-center md:p-8 p-4 rounded-lg">
           <p className="mb-2">&copy; {new Date().getFullYear()} Georgian College</p>
           <p className='mb-2'>For any inquiries, please contact our team at georgianevents@example.com</p>
           <p>COMM_1016 - Brandon, Fregine, Marjorie & Yashtika</p>
