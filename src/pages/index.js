@@ -58,6 +58,8 @@ export default function Home() {
       <Head>
         <title>Global Rhythms: A Georgian College Open Concert Night</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Global Rhythms: A Georgian College Open Concert Night" />
+        <meta name="robots" content="index, follow" />
       </Head>
       <main className="flex flex-col min-h-screen md:p-8 sm:p-4 p-2 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
         <header className="text-center relative">
