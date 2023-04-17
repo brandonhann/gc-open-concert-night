@@ -1,38 +1,23 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import { jsPDF } from "jspdf";
-import html2canvas from "html2canvas";
 import QRCode from 'qrcode.react';
 import Carousel from '../components/Carousel';
 import PieChart from '../components/PieChart';
 import dynamic from 'next/dynamic';
-import Flyer from '../components/Flyer';
 const BarChart = dynamic(() => import('../components/BarChart'), { ssr: false });
 
 
 async function downloadFlyer(setDownloading) {
   setDownloading(true);
 
-  const flyerElement = document.createElement("div");
-  flyerElement.style.position = "absolute";
-  flyerElement.style.left = "-9999px";
-  document.body.appendChild(flyerElement);
+  setTimeout(() => {
+    const imageURL = '/Global-Rhythms-Flyer.png';
+    const link = document.createElement('a');
+    link.href = imageURL;
+    link.download = 'Global-Rhythms-Flyer.png';
+    link.click();
 
-  ReactDOM.render(<Flyer />, flyerElement);
-
-  setTimeout(async () => {
-    const canvas = await html2canvas(flyerElement);
-    const imgData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF("p", "mm", "a4");
-    const imgProps = pdf.getImageProperties(imgData);
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-    pdf.save("Global-Rhythms-Flyer.pdf");
-
-    document.body.removeChild(flyerElement);
     setDownloading(false);
   }, 1000);
 }
@@ -75,9 +60,6 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <main className="flex flex-col min-h-screen md:p-8 sm:p-4 p-2 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
-        <div id="hiddenFlyer" style={{ display: "none" }}>
-          <Flyer />
-        </div>
         <header className="text-center relative">
           <div className="banner-image w-full h-56 md:h-64 rounded-t-md"></div>
           <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center sm:p-4 md:p-8 backdrop-blur-md rounded-t-md">
@@ -217,7 +199,7 @@ export default function Home() {
                   onClick={() => downloadFlyer(setDownloading)}
                   className="m-auto text-sm bg-blue-900 text-blue-50 font-bold py-2 px-4 rounded hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
                 >
-                  {downloading ? "Loading..." : "Download"}
+                  {downloading ? "Downloading..." : "Download"}
                 </button>
 
 
